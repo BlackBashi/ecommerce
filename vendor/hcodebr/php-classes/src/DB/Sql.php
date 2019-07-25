@@ -14,12 +14,15 @@ class Sql {
 	public function __construct()
 	{
 
-		$this->conn = new \PDO(
+		$sql = $this->conn = new \PDO(
 			"mysql:dbname=".Sql::DBNAME.";host=".Sql::HOSTNAME, 
 			Sql::USERNAME,
 			Sql::PASSWORD
+	
 		);
-
+		
+	
+		
 	}
 
 	private function setParams($statement, $parameters = array())

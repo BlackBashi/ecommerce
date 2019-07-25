@@ -3,11 +3,13 @@
     Black Store by Mauricio Souza
 -->
 <html lang="pt-br">
-  <head>
+  <head>   
+    <link rel="icon" type="image/png" sizes="16x16" href="/views/favicon-16x16.png">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Black Store</title>
+
     
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
