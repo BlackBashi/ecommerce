@@ -239,7 +239,8 @@ class User extends Model {
 
         $sql = new Sql ();
 
-        $sql->query("CALL sp_users_delete(;iduser)", array(
+        $sql->query("DELETE FROM tb_users WHERE iduser = :iduser
+        ", array(
             ":iduser"=>$this->getiduser()
         ));
      }

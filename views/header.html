@@ -17,15 +17,15 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
     
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="res/site/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/res/site/css/bootstrap.min.css">
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="res/site/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/res/site/css/font-awesome.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="res/site/css/owl.carousel.css">
-    <link rel="stylesheet" href="res/site/css/style.css">
-    <link rel="stylesheet" href="res/site/css/responsive.css">
+    <link rel="stylesheet" href="/res/site/css/owl.carousel.css">
+    <link rel="stylesheet" href="/res/site/css/style.css">
+    <link rel="stylesheet" href="/res/site/css/responsive.css">
 
     <script src="https://code.jquery.com/jquery.min.js"></script>
 
@@ -33,18 +33,18 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <!-- jQuery sticky menu -->
-<script src="res/site/js/owl.carousel.min.js"></script>
-<script src="res/site/js/jquery.sticky.js"></script>
+<script src="/res/site/js/owl.carousel.min.js"></script>
+<script src="/res/site/js/jquery.sticky.js"></script>
 
 <!-- jQuery easing -->
-<script src="res/site/js/jquery.easing.1.3.min.js"></script>
+<script src="/res/site/js/jquery.easing.1.3.min.js"></script>
 
 <!-- Main Script -->
-<script src="res/site/js/main.js"></script>
+<script src="/res/site/js/main.js"></script>
 
 <!-- Slider -->
-<script type="javascript" src="res/site/js/bxslider.min.js"></script>
-<script type="javascript" src="res/site/js/script.slider.js"></script>
+<script type="javascript" src="/res/site/js/bxslider.min.js"></script>
+<script type="javascript" src="/res/site/js/script.slider.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -100,7 +100,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="#"><img src="res/site/img/logo.png"></a></h1>
+                        <h1><a href="#"><img src="/res/site/img/logo.png"></a></h1>
                     </div>
                 </div>
                 
