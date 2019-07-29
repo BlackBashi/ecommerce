@@ -22,6 +22,21 @@ class Product extends Model {
     
     }
 
+    public static function checkList($list)
+    {
+
+        foreach ($list as &$row) {
+
+            $p = new Product();
+            $p->setData($row);
+            $row = $p->getValues();
+
+        }
+
+        return $list;
+
+    }
+
     public function save()
     {
 
@@ -73,9 +88,9 @@ class Product extends Model {
     public function checkPhoto()
     {
 
-        if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/res/site/img/products/" . $this->getidproduct() . "jpg"))
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/res/site/img/products/" . $this->getidproduct() . ".jpg"))
         {
-            return "/res/site/img/products/" . $this->getidproduct() . "jpg";
+            $url = "/res/site/img/products/" . $this->getidproduct() . ".jpg";
         }
 
         else {
@@ -122,7 +137,7 @@ class Product extends Model {
 
         }
 
-        $dist = $_SERVER['DOCUMENT_ROOT'] . "/res/site/img/products/" . $this->getidproduct() . "jpg";
+        $dist = $_SERVER['DOCUMENT_ROOT'] . "/res/site/img/products/" . $this->getidproduct() . ".jpg";
 
         imagejpeg($image, $dist);
 
