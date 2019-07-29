@@ -14,13 +14,13 @@ class Sql {
 	public function __construct()
 	{
 
-		$sql = $this->conn = new \PDO(
+		$this->conn = new \PDO(
 			"mysql:dbname=".Sql::DBNAME.";host=".Sql::HOSTNAME, 
 			Sql::USERNAME,
 			Sql::PASSWORD
-	
 		);
-		
+
+		$this->conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 	
 		
 	}
