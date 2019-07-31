@@ -4,7 +4,7 @@
 -->
 <html lang="pt-br">
   <head>   
-    <link rel="icon" type="image/png" sizes="16x16" href="/views/favicon-16x16.png">
+    <link rel="icon" type="image/ico" sizes="32x32" href="/views/ipad-moving-clipart-1_ico(32x32).ico">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -100,7 +100,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="#"><img src="/res/site/img/logo.png"></a></h1>
+                        <h1><a href="http://www.blackecommerce.com.br"><img src="/res/site/img/lego.png"></a></h1>
                     </div>
                 </div>
                 
