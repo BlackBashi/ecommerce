@@ -4,7 +4,7 @@
 -->
 <html lang="pt-br">
   <head>   
-    <link rel="icon" type="image/ico" sizes="32x32" href="/views/ipad-moving-clipart-1_ico(32x32).ico">
+    <link rel="icon" type="image/ico" sizes="32x32" href="/res/site/img/ipad-moving-clipart-1_ico(32x32).ico">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">

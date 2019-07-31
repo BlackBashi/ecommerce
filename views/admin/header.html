@@ -198,7 +198,7 @@ desired effect
                     <a href="#">Sales</a>
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
+                    <a href="https://www.facebook.com/MauricioSouzaBrhueh" <i class="fa fa-facebook"></i>  Contato</a>
                   </div>
                 </div>
                 <!-- /.row -->
@@ -259,8 +259,8 @@ desired effect
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
         <li class=""><a href="/admin/users"><i class="fa fa-users"></i> <span>Usuarios</span></a></li>
-        <li><a href="/admin/categories"><i class="fa fa-link"></i> <span>Categorias</span></a></li>
-        <li><a href="/admin/products"><i class="fa fa-link"></i> <span>Produtos</span></a></li>
+        <li><a href="/admin/categories"><i class="fa fa-android" ></i> <span>Categorias</span></a></li>
+        <li><a href="/admin/products"><i class="fa fa-mobile-phone"></i> <span>Produtos</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">

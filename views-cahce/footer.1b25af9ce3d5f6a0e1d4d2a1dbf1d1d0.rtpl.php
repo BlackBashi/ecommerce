@@ -5,7 +5,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="footer-about-us">
                     <h2>Black Store</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
+                    <p>Somos uma empresa responsável e com produtos de ótima qualidade!</p>
                     <div class="footer-social">
                         <a href="https://www.facebook.com/MauricioSouzaBrhueh" target="_blank"><i class="fa fa-facebook"></i></a>
                         <a href="https://twitter.com/MauricioSouzaPD" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -39,8 +39,8 @@
             
             <div class="col-md-3 col-sm-6">
                 <div class="footer-newsletter">
-                    <h2 class="footer-wid-title">Newsletter</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus!</p>
+                    <h2 class="footer-wid-title">Receba Novidades!</h2>
+                    <p>Quer receber noticias de promoções e novidades? É só inserir seu email aqui:</p>
                     <div class="newsletter-form">
                         <form action="#">
                             <input type="email" placeholder="Type your email">
