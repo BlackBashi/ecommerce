@@ -42,7 +42,7 @@ class Product extends Model {
 
         $sql= new Sql();
         
-        $results = $sql->select("CALL sp_products_save(:idproduct, :desproduct, :vlprice, :vlwidth, :vlheight, :vllength, :vlweight, :desurl)", array (
+        $results = $sql->select("CALL sp_products_save(:idproduct, :desproduct, :vlprice, :vlwidth, :vlheight, :vllength, :vlweight, :desurl, :details)", array (
             ":idproduct"=>$this->getidproduct(),
             ":desproduct"=>$this->getdesproduct(),
             ":vlprice"=>$this->getvlprice(),
@@ -50,7 +50,8 @@ class Product extends Model {
             ":vlheight"=>$this->getvlheight(),
             ":vllength"=>$this->getvllength(),
             ":vlweight"=>$this->getvlweight(),
-            ":desurl"=>$this->getdesurl()
+            ":desurl"=>$this->getdesurl(),
+            ":details"=>$this->getdetails()
         ));
         
 
@@ -144,6 +145,35 @@ class Product extends Model {
         imagedestroy($image);
 
         $this->checkPhoto();
+
+    }
+
+    public function getFromURL($desurl)
+    {
+
+        $sql = new Sql();
+                
+        $rows = $sql->select("SELECT * FROM tb_products WHERE desurl = :desurl LIMIT 1", [
+            ':desurl'=>$desurl
+        ]);
+
+        $this->setData($rows[0]);
+            
+    }
+
+    public function getCategories()
+    {
+
+        $sql = new Sql();
+
+         return $sql->select
+        ("    SELECT * FROM tb_categories a INNER JOIN tb_productscategories b ON a.idcategory = b.idcategory WHERE b.idproduct =
+              :idproduct",
+              [
+                ':idproduct'=>$this->getidproduct()
+        ]); 
+        
+                
 
     }
        
