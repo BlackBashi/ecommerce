@@ -4,6 +4,10 @@ require_once("vendor/autoload.php");
 
 use \Slim\Slim;
 
+function dd($var) {
+    var_dump($var);
+    die();
+}
 
 
 

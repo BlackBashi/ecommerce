@@ -8,9 +8,8 @@ use \Hcode\Model\Product;
 $app->get("/admin/categories", function(){
 
 	User::verifyLogin();
-
 	$categories = Category::listAll();
-
+	
 	$page = new PageAdmin();
 
 	$page->setTpl("categories", [
@@ -22,6 +21,7 @@ $app->get("/admin/categories", function(){
 $app->get("/admin/categories/create", function(){
 	
 	User::verifyLogin();
+	
 
 	$page = new PageAdmin();
 

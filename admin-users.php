@@ -2,6 +2,7 @@
 
 use \Hcode\PageAdmin;
 use \Hcode\Model\User;
+use \Hcode\DB\Sql;
 
 
 $app->get('/admin/users', function()
@@ -41,7 +42,21 @@ $app->get('/admin/users/:iduser', function($iduser){
 	User::verifyLogin();
   
 	$user = new User();
+
+
+	$sql = new Sql();
+
+
+        $results = $sql->select("SELECT * FROM tb_users WHERE iduser = :iduser;", array(
+            ":iduser"=>$iduser
+            ));
+
+		$name = $results['0']["deslogin"];
+		
+		/*var_dump($name);
+		die;*/
   
+
 	$user->get((int)$iduser);
   
 	$page = new PageAdmin();

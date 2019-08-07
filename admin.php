@@ -2,20 +2,18 @@
 
 use \Hcode\PageAdmin;
 use \Hcode\Model\User;
+use \Hcode\DB\Sql;
+
 
 
 $app->get('/admin', function() {
 	
 	User::verifyLogin();
-
 	$page = new PageAdmin();
-
 	$page->setTpl("index");
-
 });
 
 $app->get('/admin/login', function() {
-
 	$page = new PageAdmin([
 		"header"=>false,
 		"footer"=>false
@@ -24,13 +22,9 @@ $app->get('/admin/login', function() {
 	$page->setTpl("login");
 	
 });
-
 $app->post('/admin/login', function () {
-	var_dump($_POST);
 	
-	User::login($_POST["login"], $_POST["password"]);
-
-	
+	$a = User::login($_POST["login"], $_POST["password"]);
 	header("Location: /admin");
 	exit;
 });
