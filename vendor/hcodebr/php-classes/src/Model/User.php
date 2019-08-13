@@ -251,14 +251,10 @@ class User extends Model {
 
             if (count($results2) === 0)
             {
-
                 throw new Exception("Não foi possível recuperar senha.");
-                
-
             }
             else
             {
-
                 $dataRecovery = $results2[0];
 				$code = openssl_encrypt($dataRecovery['idrecovery'], 'AES192', User::SECRET, $options = 0, User::SECRET_IV);
                 $code = base64_encode($code);
@@ -269,14 +265,12 @@ class User extends Model {
 					$link = "http://www.blackecommerce.com.br/forgot/reset?code=$code";
 					
 				}				
-				$mailer = new Mailer($data['desemail'], $data['desperson'], "Redefinir senha da Hcode Store", "forgot", array(
+				$mailer = new Mailer($data['desemail'], $data['desperson'], "Redefinir senha da Black Store", "forgot", array(
 					"name"=>$data['desperson'],
 					"link"=>$link
 				));				
 				$mailer->send();
 				return $link;
-
-             
             }
 
         }

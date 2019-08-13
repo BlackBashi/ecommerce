@@ -464,9 +464,9 @@
           <div class="content">
             <a href="#">Contact Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
             <span class="footer-group">
-              <a href="#">Facebook</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="#">Twitter</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="#">Support</a>
+              <a href="https://www.facebook.com/MauricioSouzaBrhueh">Facebook</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+              <a href="https://www.facebook.com/MauricioSouzaBrhueh">Twitter</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+              <a href="https://www.facebook.com/MauricioSouzaBrhueh">Support</a>
             </span>
           </div>
         </td>
