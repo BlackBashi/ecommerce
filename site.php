@@ -187,14 +187,14 @@ $app->post("/checkout", function(){
 	$address->setData($_POST);
 	$address->save();
 	$cart = Cart::getFromSession();
-	$totals = $cart->getCalculateTotal();
+	$cart->getCalculateTotal();
 	$order = new Order();
 	$order->setData([
 		'idcart'=>$cart->getidcart(),
 		'idaddress'=>$address->getidaddress(),
 		'iduser'=>$user->getiduser(),
 		'idstatus'=>OrderStatus::EM_ABERTO,
-		'vltotal'=>$totals['vlprice'] + $cart->getvlfreight()
+		'vltotal'=>$cart->getvltotal()
 	]);
 	$order->save();
 	
@@ -360,63 +360,89 @@ $app->get("/boleto/:idorder", function($idorder){
 	$order->get((int)$idorder);
 
 	// DADOS DO BOLETO PARA O SEU CLIENTE
-$dias_de_prazo_para_pagamento = 10;
-$taxa_boleto = 5.00;
-$data_venc = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
-$valor_cobrado = formatPrice($order->getvltotal()); // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
-$valor_cobrado = str_replace(",", ".",$valor_cobrado);
-$valor_boleto=number_format($valor_cobrado+$taxa_boleto, 2, ',', '');
+	$dias_de_prazo_para_pagamento = 10;
+	$taxa_boleto = 5.00;
+	$data_venc = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
+	$valor_cobrado = formatPrice($order->getvltotal()); // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
+	$valor_cobrado = str_replace(".", "", $valor_cobrado);
+	$valor_cobrado = str_replace(",", ".",$valor_cobrado);
+	$valor_boleto=number_format($valor_cobrado+$taxa_boleto, 2, ',', '');
 
-$dadosboleto["nosso_numero"] = $order->getidorder();  // Nosso numero - REGRA: Máximo de 8 caracteres!
-$dadosboleto["numero_documento"] = $order->getidorder();	// Num do pedido ou nosso numero
-$dadosboleto["data_vencimento"] = $data_venc; // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
-$dadosboleto["data_documento"] = date("d/m/Y"); // Data de emissão do Boleto
-$dadosboleto["data_processamento"] = date("d/m/Y"); // Data de processamento do boleto (opcional)
-$dadosboleto["valor_boleto"] = $valor_boleto; 	// Valor do Boleto - REGRA: Com vírgula e sempre com duas casas depois da virgula
+	$dadosboleto["nosso_numero"] = $order->getidorder();  // Nosso numero - REGRA: Máximo de 8 caracteres!
+	$dadosboleto["numero_documento"] = $order->getidorder();	// Num do pedido ou nosso numero
+	$dadosboleto["data_vencimento"] = $data_venc; // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
+	$dadosboleto["data_documento"] = date("d/m/Y"); // Data de emissão do Boleto
+	$dadosboleto["data_processamento"] = date("d/m/Y"); // Data de processamento do boleto (opcional)
+	$dadosboleto["valor_boleto"] = $valor_boleto; 	// Valor do Boleto - REGRA: Com vírgula e sempre com duas casas depois da virgula
 
-// DADOS DO SEU CLIENTE
-$dadosboleto["sacado"] = $order->getdesperson();
-$dadosboleto["endereco1"] = $order->getdesaddress() . " " . $order->getdesdistrict();
-$dadosboleto["endereco2"] = $order->getdescity() . " - " . $order->getdesstate() . " - " . $order->getdescountry() . " -  CEP:" . $order->getdeszipcode();
+	// DADOS DO SEU CLIENTE
+	$dadosboleto["sacado"] = $order->getdesperson();
+	$dadosboleto["endereco1"] = $order->getdesaddress() . " " . $order->getdesdistrict();
+	$dadosboleto["endereco2"] = $order->getdescity() . " - " . $order->getdesstate() . " - " . $order->getdescountry() . " -  CEP:" . $order->getdeszipcode();
 
-// INFORMACOES PARA O CLIENTE
-$dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja Black Store";
-$dadosboleto["demonstrativo2"] = "Taxa bancária - R$ 0,00";
-$dadosboleto["demonstrativo3"] = "";
-$dadosboleto["instrucoes1"] = "- Sr. Caixa, cobrar multa de 2% após o vencimento";
-$dadosboleto["instrucoes2"] = "- Receber até 10 dias após o vencimento";
-$dadosboleto["instrucoes3"] = "- Em caso de dúvidas entre em contato conosco: ";
-$dadosboleto["instrucoes4"] = "&nbsp; Emitido pelo sistema Projeto Loja Hcode E-commerce - www.hcode.com.br";
+	// INFORMACOES PARA O CLIENTE
+	$dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja Black Store";
+	$dadosboleto["demonstrativo2"] = "Taxa bancária - R$ 0,00";
+	$dadosboleto["demonstrativo3"] = "";
+	$dadosboleto["instrucoes1"] = "- Sr. Caixa, cobrar multa de 2% após o vencimento";
+	$dadosboleto["instrucoes2"] = "- Receber até 10 dias após o vencimento";
+	$dadosboleto["instrucoes3"] = "- Em caso de dúvidas entre em contato conosco: ";
+	$dadosboleto["instrucoes4"] = "&nbsp; Emitido pelo sistema Projeto Loja Hcode E-commerce - www.hcode.com.br";
 
-// DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
-$dadosboleto["quantidade"] = "";
-$dadosboleto["valor_unitario"] = "";
-$dadosboleto["aceite"] = "";		
-$dadosboleto["especie"] = "R$";
-$dadosboleto["especie_doc"] = "";
-
-
-// ---------------------- DADOS FIXOS DE CONFIGURAÇÃO DO SEU BOLETO --------------- //
+	// DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
+	$dadosboleto["quantidade"] = "";
+	$dadosboleto["valor_unitario"] = "";
+	$dadosboleto["aceite"] = "";		
+	$dadosboleto["especie"] = "R$";
+	$dadosboleto["especie_doc"] = "";
 
 
-// DADOS DA SUA CONTA - ITAÚ
-$dadosboleto["agencia"] = "1690"; // Num da agencia, sem digito
-$dadosboleto["conta"] = "48781";	// Num da conta, sem digito
-$dadosboleto["conta_dv"] = "2"; 	// Digito do Num da conta
+	// ---------------------- DADOS FIXOS DE CONFIGURAÇÃO DO SEU BOLETO --------------- //
 
-// DADOS PERSONALIZADOS - ITAÚ
-$dadosboleto["carteira"] = "175";  // Código da Carteira: pode ser 175, 174, 104, 109, 178, ou 157
 
-// SEUS DADOS
-$dadosboleto["identificacao"] = "Black Store";
-$dadosboleto["cpf_cnpj"] = "14.256.32/55.23.45";
-$dadosboleto["endereco"] = "Rua dos Louros, 755W - Jd. Primavera III";
-$dadosboleto["cidade_uf"] = "Nova Mutum - MT";
-$dadosboleto["cedente"] = "BLACK STORE LTDA";
+	// DADOS DA SUA CONTA - ITAÚ
+	$dadosboleto["agencia"] = "1690"; // Num da agencia, sem digito
+	$dadosboleto["conta"] = "48781";	// Num da conta, sem digito
+	$dadosboleto["conta_dv"] = "2"; 	// Digito do Num da conta
 
-// NÃO ALTERAR!
-$path = $_SERVER['DOCUMENT_ROOT'] . "/res/boletophp/include/";
-require_once($path . "funcoes_itau.php");
-require_once($path . "layout_itau.php");
+	// DADOS PERSONALIZADOS - ITAÚ
+	$dadosboleto["carteira"] = "175";  // Código da Carteira: pode ser 175, 174, 104, 109, 178, ou 157
+
+	// SEUS DADOS
+	$dadosboleto["identificacao"] = "Black Store";
+	$dadosboleto["cpf_cnpj"] = "14.256.32/55.23.45";
+	$dadosboleto["endereco"] = "Rua dos Louros, 755W - Jd. Primavera III";
+	$dadosboleto["cidade_uf"] = "Nova Mutum - MT";
+	$dadosboleto["cedente"] = "BLACK STORE LTDA";
+
+	// NÃO ALTERAR!
+	$path = $_SERVER['DOCUMENT_ROOT'] . "/res/boletophp/include/";
+	require_once($path . "funcoes_itau.php");
+	require_once($path . "layout_itau.php");
+
+	});
+
+	$app->get("/profile/orders", function(){
+		User::verifyLogin(false);
+		$user = User::getFromSession();
+		$page = new Page();
+		$page->setTpl("profile-orders", [
+			'orders'=>$user->getOrders()
+		]);
+});
+
+$app->get("/profile/orders/:idorder", function($idorder){
+	User::verifyLogin(false);
+	$order = new Order;
+	$order->get((int)$idorder);
+	$cart = new Cart();
+	$cart->get((int)$order->getidcart());
+	$cart->getCalculateTotal();
+	$page = new Page();
+	$page->setTpl("profile-orders-detail", [
+		'order'=>$order->getValues(),
+		'cart'=>$cart->getValues(),
+		'products'=>$cart->getProducts()
+	]);	
 
 });

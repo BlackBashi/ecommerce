@@ -1,6 +1,7 @@
 <?php
 
 use \Hcode\Model\User;
+use \Hcode\Model\Cart;
 
 function dd($var) {
     var_dump($var);
@@ -19,4 +20,16 @@ function checkLogin($inadmin = true){
 function getUserName(){
     $user = User::getFromSession();
     return $user->getdesperson();
+}
+
+function getCartNrQtd(){
+    $cart = Cart::getFromSession();
+    $totals = $cart->getProductsTotals();
+    return $totals['nrqtd'];
+}
+
+function getCartVlSubTotal(){
+    $cart = Cart::getFromSession();
+    $totals = $cart->getProductsTotals();
+    return formatPrice($totals['vlprice']);
 }
