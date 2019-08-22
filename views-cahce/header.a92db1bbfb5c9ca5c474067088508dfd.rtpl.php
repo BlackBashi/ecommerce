@@ -7,9 +7,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
+  <link rel="icon" type="image/ico" sizes="32x32" href="/res/admin/img/ipad-moving-clipart-1_ico(32x32).ico">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Pagina Do ADMIN 2 | Starter</title>
+  <title>Black Store | ADMIN</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
