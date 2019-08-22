@@ -177,6 +177,7 @@ class Category extends Model {
             "SELECT SQL_CALC_FOUND_ROWS *
             FROM tb_categories
             WHERE descategory LIKE :search
+            ORDER BY descategory
             LIMIT $start, $itemsPerPage;", [
                 ':search'=>'%'.$search.'%'
             ]
