@@ -5,8 +5,7 @@ use \Hcode\Model\User;
 use \Hcode\DB\Sql;
 
 
-$app->get('/admin/users', function()
-{
+$app->get('/admin/users', function(){
 
 	User::verifyLogin();
 	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
@@ -28,6 +27,7 @@ $app->get('/admin/users', function()
 			'text'=>$x+1
 		]);
 	}
+
 	$page = new PageAdmin();
 	$page->setTpl("users", array(
 		"users"=>$pagination['data'],
